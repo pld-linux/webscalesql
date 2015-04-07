@@ -81,9 +81,6 @@ test "$version" = "%{basever}"
 install -d build
 cd build
 
-  # XXX: MYSQL_UNIX_ADDR should be in cmake/* but webscalesql_version is included before
-  # XXX: install_layout so we can't just set it based on INSTALL_LAYOUT=RPM
-
 %cmake .. \
 	%{?debug:-DWITH_DEBUG=ON} \
 	-DINSTALL_LAYOUT=RPM \

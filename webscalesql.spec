@@ -19,6 +19,8 @@ Source0:	https://github.com/webscalesql/webscalesql-5.6/archive/%{gitrev}/%{name
 Patch0:		%{name}-5.6-build.patch
 URL:		http://webscalesql.org/
 BuildRequires:	cmake >= 2.6
+BuildRequires:	libaio-devel
+BuildRequires:	libstdc++-devel
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	readline-devel >= 6.2
 BuildRequires:	rpmbuild(macros) >= 1.597

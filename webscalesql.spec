@@ -12,7 +12,7 @@
 Summary:	WebScaleSQL, based upon the MySQL community releases
 Name:		webscalesql
 Version:	%{basever}.%{revs}
-Release:	0.1
+Release:	0.2
 License:	GPL + MySQL FLOSS Exception
 Group:		Applications/Databases
 Source0:	https://github.com/webscalesql/webscalesql-5.6/archive/%{gitrev}/%{name}-5.6-%{gitrev}.tar.gz
@@ -112,6 +112,24 @@ mv $RPM_BUILD_ROOT%{_bindir}/{,.}mysql_config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libmysqlservices.so
 mv $RPM_BUILD_ROOT%{_bindir}/{.,}mysql_config
 
+# create pkg-config
+# FIXME: what about the _r library?
+install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
+cat > $RPM_BUILD_ROOT%{_pkgconfigdir}/libwebscalesqlclient.pc <<'EOF'
+prefix=%{_prefix}
+exec_prefix=%{_exec_prefix}
+libdir=%{_libdir}
+includedir=%{_includedir}/mysql
+
+Name: libwebscalesqlclient
+Description: WebScaleSQL client library (MySQL)
+Version: %{version}
+Requires:
+Libs: -L${libdir} -lwebscalesqlclient
+Cflags: -I${includedir}
+
+EOF
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -131,6 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/mysql
 %{_libdir}/libwebscalesqlclient.so
 %{_libdir}/libwebscalesqlclient_r.so
+%{_pkgconfigdir}/libwebscalesqlclient.pc
 
 %files static
 %defattr(644,root,root,755)

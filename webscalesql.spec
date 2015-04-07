@@ -1,5 +1,6 @@
 # TODO
 # - fix openssl detect: -DWITH_SSL=%{?with_ssl:system}%{!?with_ssl:no}
+# - system zlib -DWITH_ZLIB=system
 #
 # Conditional build:
 %bcond_without	ssl		# OpenSSL support
@@ -82,19 +83,20 @@ cd build
   # XXX: install_layout so we can't just set it based on INSTALL_LAYOUT=RPM
 
 %cmake .. \
-	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
-	-DBUILD_CONFIG=mysql_release \
+	%{?debug:-DWITH_DEBUG=ON} \
 	-DINSTALL_LAYOUT=RPM \
 	-DCOMPILATION_COMMENT="WebScaleSQL Server (GPL)" \
 	-DFEATURE_SET="community" \
 	-DMYSQL_SERVER_SUFFIX="" \
 	-DMYSQL_UNIX_ADDR=/var/lib/mysql/mysql.sock \
-	-DWITH_INNODB_MEMCACHED=1 \
+	-DWITH_INNODB_MEMCACHED=ON \
+	-DENABLE_MEMCACHED_SASL=OFF \
 	-DWITH_SSL=bundled \
 	-DWITH_UNIT_TESTS=OFF \
 	-DWITHOUT_SERVER=ON \
+	%{nil}
 
-%{__make} VERBOSE=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT

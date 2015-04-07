@@ -14,6 +14,7 @@ License:	GPL + MySQL FLOSS Exception
 Group:		Applications/Databases
 Source0:	https://github.com/webscalesql/webscalesql-5.6/archive/%{gitrev}/%{name}-5.6-%{gitrev}.tar.gz
 # Source0-md5:	5ee76824913ff96ba70b68d8aeb50e49
+Patch0:		%{name}-5.6-build.patch
 URL:		http://webscalesql.org/
 BuildRequires:	cmake >= 2.6
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
@@ -59,6 +60,7 @@ WebScaleSQL static libraries.
 %prep
 %setup -qc
 mv webscalesql-5.6-*/* .
+%patch0 -p1
 
 # to get these files rebuilt
 [ -f sql/sql_yacc.cc ] && %{__rm} sql/sql_yacc.cc

@@ -49,6 +49,7 @@ Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_ssl:Requires: openssl-devel}
 Requires:	zlib-devel
+Conflicts:	mysql-devel
 
 %description devel
 This package contains the development header files and other files
@@ -58,6 +59,7 @@ necessary to develop WebScaleSQL client applications.
 Summary:	WebScaleSQL static libraries
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Conflicts:	mysql-devel
 
 %description static
 WebScaleSQL static libraries.

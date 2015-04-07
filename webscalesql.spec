@@ -1,3 +1,5 @@
+# TODO
+# - fix openssl detect: -DWITH_SSL=%{?with_ssl:system}%{!?with_ssl:no}
 #
 # Conditional build:
 %bcond_without	ssl		# OpenSSL support
@@ -86,7 +88,7 @@ cd build
 	-DMYSQL_SERVER_SUFFIX="" \
 	-DMYSQL_UNIX_ADDR=/var/lib/mysql/mysql.sock \
 	-DWITH_INNODB_MEMCACHED=1 \
-	-DWITH_SSL=%{?with_ssl:system}%{!?with_ssl:no} \
+	-DWITH_SSL=bundled \
 	-DWITH_UNIT_TESTS=OFF \
 	-DWITHOUT_SERVER=ON \
 

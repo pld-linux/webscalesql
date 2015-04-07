@@ -71,7 +71,7 @@ mv webscalesql-5.6-*/* .
 %build
 . ./VERSION
 version=$MYSQL_VERSION_MAJOR.$MYSQL_VERSION_MINOR.$MYSQL_VERSION_PATCH${MYSQL_VERSION_EXTRA+$MYSQL_VERSION_EXTRA}
-test "$version" = "%{version}"
+test "$version" = "%{basever}"
 
 install -d build
 cd build

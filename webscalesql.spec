@@ -30,7 +30,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 WebScaleSQL is an open source database management system (DBMS)
-created as a software branch of WebScaleSQL 5.6.
+created as a software branch of MySQL 5.6.
 
 %package libs
 Summary:	Shared libraries for WebScaleSQL

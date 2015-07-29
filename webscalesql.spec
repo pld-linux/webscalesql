@@ -4,6 +4,7 @@
 #
 # Conditional build:
 %bcond_without	ssl		# OpenSSL support
+%bcond_with	systemtap	# systemtap/dtrace probes
 
 %define		gitrev	004b6b3
 %define		basever	5.6.23
@@ -25,6 +26,7 @@ BuildRequires:	libstdc++-devel
 %{?with_ssl:BuildRequires:	openssl-devel >= 0.9.7d}
 BuildRequires:	readline-devel >= 6.2
 BuildRequires:	rpmbuild(macros) >= 1.597
+%{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -93,6 +95,7 @@ cd build
 	-DWITH_SSL=bundled \
 	-DWITH_UNIT_TESTS=OFF \
 	-DWITHOUT_SERVER=ON \
+	-DENABLE_DTRACE=%{!?with_systemtap:OFF}%{?with_systemtap:ON} \
 	%{nil}
 
 %{__make}

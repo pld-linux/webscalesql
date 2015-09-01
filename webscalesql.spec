@@ -13,7 +13,7 @@
 Summary:	WebScaleSQL, based upon the MySQL community releases
 Name:		webscalesql
 Version:	%{basever}.%{revs}
-Release:	0.2
+Release:	1
 License:	GPL + MySQL FLOSS Exception
 Group:		Applications/Databases
 Source0:	https://github.com/webscalesql/webscalesql-5.6/archive/%{gitrev}/%{name}-5.6-%{gitrev}.tar.gz
@@ -51,7 +51,7 @@ Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 %{?with_ssl:Requires: openssl-devel}
 Requires:	zlib-devel
-Conflicts:	mysql-devel
+Obsoletes:	mysql-devel
 
 %description devel
 This package contains the development header files and other files

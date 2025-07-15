@@ -69,7 +69,7 @@ WebScaleSQL static libraries.
 %prep
 %setup -qc
 mv webscalesql-5.6-*/* .
-%patch0 -p1
+%patch -P0 -p1
 
 # to get these files rebuilt
 [ -f sql/sql_yacc.cc ] && %{__rm} sql/sql_yacc.cc
